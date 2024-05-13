@@ -6,7 +6,8 @@ from PyQt6 import QtWidgets, uic, QtGui
 class AuthWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(AuthWindow, self).__init__()
-        uic.loadUi('auth.ui', self)
+        self.main_window = None
+        uic.loadUi('ui/auth.ui', self)
         self.pushButton_2.clicked.connect(self.openMainWindow)
 
     def openMainWindow(self):
@@ -19,10 +20,10 @@ class MyApp(QtWidgets.QMainWindow):
     def __init__(self):
         super(MyApp, self).__init__()
         self.auth_window = None
-        uic.loadUi('app.ui', self)
+        uic.loadUi('ui/app.ui', self)
 
         # Set the icon for the button
-        self.buttonBasics.setIcon(QtGui.QIcon('picture.png'))
+        self.buttonBasics.setIcon(QtGui.QIcon('ui/buttonBasics.png'))
 
         # Connect the button click to the function that opens the auth window
         self.buttonBasics.clicked.connect(self.openAuthWindow)

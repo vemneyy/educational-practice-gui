@@ -6,9 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="d533e2cd-cd3b-4d72-a967-fa6428bff85d" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.ui" beforeDir="false" afterPath="$PROJECT_DIR$/app.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.ui" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.ui" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/auth.ui" beforeDir="false" afterPath="$PROJECT_DIR$/auth.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/picture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources.qrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources_rc.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/app.ui" beforeDir="false" afterPath="$PROJECT_DIR$/ui/app.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/picture.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/registration.ui" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +239,8 @@
       <workItem from="1715588598642" duration="2091000" />
       <workItem from="1715592230421" duration="8127000" />
       <workItem from="1715618093137" duration="6297000" />
-      <workItem from="1715630062704" duration="3000" />
+      <workItem from="1715630062704" duration="512000" />
+      <workItem from="1715631141139" duration="948000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -273,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715623460242</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update">
+      <option name="closed" value="true" />
+      <created>1715630147181</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715630147181</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,7 +316,7 @@
     <SUITE FILE_PATH="coverage/educational_practice_gui$auth.coverage" NAME="auth Coverage Results" MODIFIED="1715599399985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/educational_practice_gui$qt_windows.coverage" NAME="qt-windows Coverage Results" MODIFIED="1715589573584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/educational_practice_gui$app_.coverage" NAME="app- Coverage Results" MODIFIED="1715599616048" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/educational_practice_gui$app.coverage" NAME="app Coverage Results" MODIFIED="1715618152250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/educational_practice_gui$main.coverage" NAME="main Coverage Results" MODIFIED="1715627108962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/educational_practice_gui$app.coverage" NAME="app Coverage Results" MODIFIED="1715631402436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/educational_practice_gui$main.coverage" NAME="main Coverage Results" MODIFIED="1715632068369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
