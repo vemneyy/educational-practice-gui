@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 from auth import Ui_SignInWindow
 from registration import Ui_SignUpWindow
 
@@ -98,8 +99,10 @@ class Ui_MainWindow(object):
         self.window.show()  # Show the new window
         MainWindow.close()  # Close the current main window
 
+
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
