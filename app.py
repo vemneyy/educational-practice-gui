@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'app.ui'
+# Form implementation generated from reading ui file 'app-.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,9 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-from auth import Ui_SignInWindow
-from registration import Ui_SignUpWindow
 
 
 class Ui_MainWindow(object):
@@ -23,7 +20,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(100, 50, 393, 39))
+        self.label.setGeometry(QtCore.QRect(90, 30, 393, 39))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(20)
@@ -33,7 +30,7 @@ class Ui_MainWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(110, 120, 380, 40))
+        self.label_2.setGeometry(QtCore.QRect(100, 90, 380, 40))
         self.label_2.setMaximumSize(QtCore.QSize(380, 40))
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -41,11 +38,8 @@ class Ui_MainWindow(object):
         self.label_2.setFont(font)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
-        self.splitter = QtWidgets.QSplitter(self.centralwidget)
-        self.splitter.setGeometry(QtCore.QRect(110, 210, 381, 46))
-        self.splitter.setOrientation(QtCore.Qt.Horizontal)
-        self.splitter.setObjectName("splitter")
-        self.buttonSignIn = QtWidgets.QPushButton(self.splitter)
+        self.buttonSignIn = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonSignIn.setGeometry(QtCore.QRect(110, 170, 151, 91))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(18)
@@ -54,20 +48,137 @@ class Ui_MainWindow(object):
         self.buttonSignIn.setFont(font)
         self.buttonSignIn.setAutoFillBackground(True)
         self.buttonSignIn.setObjectName("buttonSignIn")
-        self.buttonSignUp = QtWidgets.QPushButton(self.splitter)
-        self.buttonSignIn.clicked.connect(self.openSignInWindow)
+        self.buttonSignUp = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonSignUp.setEnabled(True)
+        self.buttonSignUp.setGeometry(QtCore.QRect(270, 170, 191, 91))
         font = QtGui.QFont()
         font.setFamily("Roboto")
         font.setPointSize(18)
         font.setBold(True)
         font.setWeight(75)
         self.buttonSignUp.setFont(font)
-        self.buttonSignUp.setAutoFillBackground(True)
+        self.buttonSignUp.setAutoFillBackground(False)
         self.buttonSignUp.setObjectName("buttonSignUp")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.buttonSignIn.clicked.connect(self.openSignInWindow)
         self.buttonSignUp.clicked.connect(self.openSignUpWindow)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Обучающее приложение \"Физика. Электричество\""))
+        self.label.setText(_translate("MainWindow", "Обучающее приложение"))
+        self.buttonSignIn.setText(_translate("MainWindow", "Войти"))
+        self.buttonSignUp.setText(_translate("MainWindow", "Регистрация"))
+        self.label_2.setText(_translate("MainWindow", "\"Физика. Электричество\""))
+
+    def openSignInWindow(self):
+        self.window = QtWidgets.QMainWindow()  # Create a new window instance
+        self.ui = Ui_SignInWindow(self.window)  # Pass the current main window to the sign-in window
+        self.ui.setupUi(self.window)
+        self.window.show()  # Show the new window
+        MainWindow.close()  # Close the current main window
+
+    def openSignUpWindow(self):
+        self.window = QtWidgets.QMainWindow()  # Create a new window instance
+        self.ui = Ui_SignUpWindow(self.window)  # Pass the current main window to the sign-in window
+        self.ui.setupUi(self.window)
+        self.window.show()  # Show the new window
+        MainWindow.close()  # Close the current main window
+
+
+class Ui_SignUpWindow(object):
+    def __init__(self, parent=None):
+        self.parent = parent  # Store the reference to the parent window
+        self.signup_window = None
+
+    def setupUi(self, MainWindow):
+        self.signup_window = MainWindow
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(521, 481)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(130, 0, 221, 41))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(20, 80, 81, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(20, 130, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(20, 180, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(20, 230, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(20, 280, 111, 31))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_6.setFont(font)
+        self.label_6.setObjectName("label_6")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(0, 0, 41, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(self.go_back)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(80, 360, 321, 71))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 591, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 521, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -79,25 +190,117 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Обучающее приложение \"Физика. Электричество\""))
-        self.label.setText(_translate("MainWindow", "Обучающее приложение"))
-        self.label_2.setText(_translate("MainWindow", "\"Физика. Электричество\""))
-        self.buttonSignIn.setText(_translate("MainWindow", "Войти"))
-        self.buttonSignUp.setText(_translate("MainWindow", "Регистрация"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "Регистрация"))
+        self.label_2.setText(_translate("MainWindow", "Логин:"))
+        self.label_3.setText(_translate("MainWindow", "Фамилия:"))
+        self.label_4.setText(_translate("MainWindow", "Имя:"))
+        self.label_5.setText(_translate("MainWindow", "Пол:"))
+        self.label_6.setText(_translate("MainWindow", "Пароль:"))
+        self.pushButton.setText(_translate("MainWindow", "Зарегистрироваться"))
 
-    def openSignInWindow(self):
-        self.window = QtWidgets.QMainWindow()  # Create a new window instance
-        self.ui = Ui_SignInWindow()  # Create an instance of the new window's UI
-        self.ui.setupUi(self.window)
-        self.window.show()  # Show the new window
-        MainWindow.hide()  # Close the current main window
+    def go_back(self):
+        self.signup_window.close()
+        MainWindow.show()
 
-    def openSignUpWindow(self):
-        self.window = QtWidgets.QMainWindow()  # Create a new window instance
-        self.ui = Ui_SignUpWindow()  # Create an instance of the new window's UI
-        self.ui.setupUi(self.window)
-        self.window.show()  # Show the new window
-        MainWindow.close()  # Close the current main window
+
+class Ui_SignInWindow(object):
+    def __init__(self, parent=None):
+        self.parent = parent  # Store the reference to the parent window
+        self.auth_window = None
+
+    def setupUi(self, AuthWindows):
+        self.auth_window = AuthWindows
+        AuthWindows.setObjectName("AuthWindows")
+        AuthWindows.resize(506, 296)
+        AuthWindows.setMinimumSize(QtCore.QSize(506, 296))
+        AuthWindows.setMaximumSize(QtCore.QSize(506, 296))
+        self.centralwidget = QtWidgets.QWidget(AuthWindows)
+        self.centralwidget.setObjectName("centralwidget")
+        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit.setGeometry(QtCore.QRect(170, 100, 231, 22))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        self.lineEdit.setFont(font)
+        self.lineEdit.setObjectName("lineEdit")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(80, 100, 81, 16))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(80, 140, 91, 21))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_2.setGeometry(QtCore.QRect(170, 140, 231, 22))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(14)
+        self.lineEdit_2.setFont(font)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(180, 190, 121, 51))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(120, 30, 241, 41))
+        font = QtGui.QFont()
+        font.setFamily("Roboto")
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setObjectName("label_3")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(0, 0, 41, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(self.go_back)
+        AuthWindows.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(AuthWindows)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 506, 26))
+        self.menubar.setObjectName("menubar")
+        AuthWindows.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(AuthWindows)
+        self.statusbar.setObjectName("statusbar")
+        AuthWindows.setStatusBar(self.statusbar)
+
+        self.retranslateUi(AuthWindows)
+        QtCore.QMetaObject.connectSlotsByName(AuthWindows)
+
+    def retranslateUi(self, AuthWindows):
+        _translate = QtCore.QCoreApplication.translate
+        AuthWindows.setWindowTitle(_translate("AuthWindows", "Авторизация"))
+        self.label.setText(_translate("AuthWindows", "Логин:"))
+        self.label_2.setText(_translate("AuthWindows", "Пароль:"))
+        self.pushButton.setText(_translate("AuthWindows", "Войти"))
+        self.label_3.setText(_translate("AuthWindows", "Авторизация"))
+        self.pushButton_2.setText(_translate("AuthWindows", "<"))
+
+    def go_back(self):
+        self.auth_window.close()
+        MainWindow.show()
 
 
 if __name__ == "__main__":
