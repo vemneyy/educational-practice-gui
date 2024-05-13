@@ -7,8 +7,7 @@ class AuthWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(AuthWindow, self).__init__()
         self.main_window = None
-        uic.loadUi('ui/auth.ui', self)
-        self.pushButton_2.clicked.connect(self.openMainWindow)
+        uic.loadUi('ui/theory.ui', self)
 
     def openMainWindow(self):
         self.main_window = MyApp()  # Create an instance of the main window
