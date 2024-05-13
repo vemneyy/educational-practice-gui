@@ -12,14 +12,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>150</width>
-    <height>150</height>
+    <width>1000</width>
+    <height>845</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>16777215</height>
+    <width>1000</width>
+    <height>845</height>
    </size>
   </property>
   <property name="baseSize">
@@ -127,7 +127,7 @@
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="resources.qrc">
+     <iconset resource="ui/resources.qrc">
       <normaloff>:/images/picture.png</normaloff>:/images/picture.png</iconset>
     </property>
     <property name="iconSize">

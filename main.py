@@ -1,36 +1,48 @@
 import sys
 
-from PyQt5 import QtWidgets, uic, QtGui, QtCore
+from PyQt6 import QtWidgets, uic, QtGui
+
+
+class AuthWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(AuthWindow, self).__init__()
+        uic.loadUi('auth.ui', self)
+        self.pushButton_2.clicked.connect(self.openMainWindow)
+
+    def openMainWindow(self):
+        self.main_window = MyApp()  # Create an instance of the main window
+        self.main_window.show()  # Show the main window
+        self.close()  # Close the current (auth) window
 
 
 class MyApp(QtWidgets.QMainWindow):
     def __init__(self):
         super(MyApp, self).__init__()
+        self.auth_window = None
         uic.loadUi('app.ui', self)
 
-        # Получение экрана и DPI
-        screen = QtWidgets.QApplication.screens()[0]
-        dpi = screen.logicalDotsPerInch()
-        self.scale_factor = dpi / 96  # 96 DPI - обычно стандартный DPI
+        # Set the icon for the button
+        self.buttonBasics.setIcon(QtGui.QIcon('picture.png'))
 
-        # Масштабирование окна с округлением до целых значений
-        min_width = int(560 * self.scale_factor)
-        min_height = int(500 * self.scale_factor)
-        self.setMinimumSize(min_width, min_height)
-        self.setMaximumSize(min_width, min_height)
+        # Connect the button click to the function that opens the auth window
+        self.buttonBasics.clicked.connect(self.openAuthWindow)
 
-        # Установка иконки для кнопки
-        self.buttonBasics.setIcon(QtGui.QIcon('picture.png'))  # Путь к файлу изображения
+    def openAuthWindow(self):
+        self.auth_window = AuthWindow()  # Create an instance of the AuthWindow
+        self.auth_window.show()  # Show the auth window
+        self.close()  # Close the main window
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
 
-    app.setStyle("fusion")  # Улучшенный стиль для современного вида
-    app.setPalette(QtWidgets.QApplication.style().standardPalette())  # Установка стандартной палитры
+    # Setting the style and palette
+    app.setStyle("Fusion")  # Enhanced style for a modern look
+    app.setPalette(QtWidgets.QApplication.style().standardPalette())  # Set the standard palette
+
     window = MyApp()
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())  # Changed from exec_() to exec()
 
 
 if __name__ == '__main__':
