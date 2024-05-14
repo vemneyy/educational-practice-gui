@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>828</width>
-    <height>687</height>
+    <width>849</width>
+    <height>702</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -38,6 +38,18 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+    background-color: white;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 25px;
+    border-color: white;
+    min-width: 2px;
+    padding: 6px;
+}
+</string>
+  </property>
   <property name="documentMode">
    <bool>false</bool>
   </property>
@@ -48,7 +60,7 @@
    <widget class="QLabel" name="labelLections">
     <property name="geometry">
      <rect>
-      <x>330</x>
+      <x>340</x>
       <y>80</y>
       <width>161</width>
       <height>31</height>
@@ -57,13 +69,14 @@
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>20</pointsize>
       <weight>75</weight>
       <bold>true</bold>
+      <underline>true</underline>
      </font>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="lineWidth">
      <number>2</number>
@@ -83,20 +96,21 @@
      <rect>
       <x>330</x>
       <y>470</y>
-      <width>151</width>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>20</pointsize>
       <weight>75</weight>
       <bold>true</bold>
+      <underline>true</underline>
      </font>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="lineWidth">
      <number>2</number>
@@ -111,7 +125,7 @@
    <widget class="QLabel" name="labelBasics">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>40</x>
       <y>120</y>
       <width>251</width>
       <height>23</height>
@@ -133,15 +147,15 @@
    <widget class="QPushButton" name="buttonBasics_1">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>70</x>
       <y>150</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
@@ -162,7 +176,7 @@
    <widget class="QLabel" name="labelSchemes">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>310</x>
       <y>120</y>
       <width>221</width>
       <height>23</height>
@@ -184,7 +198,7 @@
    <widget class="QLabel" name="labelLawOm">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>210</x>
       <y>290</y>
       <width>161</width>
       <height>23</height>
@@ -206,7 +220,7 @@
    <widget class="QLabel" name="labelElectricPower">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>540</x>
       <y>120</y>
       <width>291</width>
       <height>23</height>
@@ -228,7 +242,7 @@
    <widget class="QLabel" name="labelMagnetism">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>440</x>
       <y>290</y>
       <width>221</width>
       <height>23</height>
@@ -272,7 +286,7 @@
    <widget class="QLabel" name="labelTest">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>170</x>
       <y>510</y>
       <width>261</width>
       <height>23</height>
@@ -291,58 +305,23 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="Line" name="lineSecond">
-    <property name="geometry">
-     <rect>
-      <x>-70</x>
-      <y>460</y>
-      <width>1021</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="lineWidth">
-     <number>2</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="Line" name="lineFirst">
-    <property name="geometry">
-     <rect>
-      <x>-30</x>
-      <y>70</y>
-      <width>1021</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="lineWidth">
-     <number>2</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="buttonBasics_2">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>330</x>
       <y>150</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>125</width>
+      <width>18</width>
       <height>125</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
@@ -361,15 +340,15 @@
    <widget class="QPushButton" name="buttonBasics_3">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>200</x>
       <y>320</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
@@ -390,15 +369,15 @@
    <widget class="QPushButton" name="buttonBasics_4">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>590</x>
       <y>150</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
@@ -419,15 +398,15 @@
    <widget class="QPushButton" name="buttonBasics_5">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>460</x>
       <y>320</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
@@ -448,15 +427,15 @@
    <widget class="QPushButton" name="buttonBasics_6">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>200</x>
       <y>540</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
@@ -477,15 +456,15 @@
    <widget class="QPushButton" name="buttonBasics_7">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>460</x>
       <y>540</y>
-      <width>125</width>
+      <width>186</width>
       <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>100</width>
+      <width>18</width>
       <height>100</height>
      </size>
     </property>
