@@ -1,48 +1,68 @@
 import sys
 
-from PyQt6 import QtWidgets, uic, QtGui
+from PyQt6 import QtWidgets, uic
 
 
-class AuthWindow(QtWidgets.QMainWindow):
+class TheoryWindowSecond(QtWidgets.QMainWindow):
     def __init__(self):
-        super(AuthWindow, self).__init__()
+        super(TheoryWindowSecond, self).__init__()
+        self.back_window = None
         self.main_window = None
-        uic.loadUi('ui/theory.ui', self)
+        uic.loadUi('ui/theory_template_other.ui', self)
+
+        self.buttonBack.clicked.connect(self.openBackWindow)
+        self.buttonForward.clicked.connect(self.openMainWindow)
 
     def openMainWindow(self):
-        self.main_window = MyApp()  # Create an instance of the main window
-        self.main_window.show()  # Show the main window
-        self.close()  # Close the current (auth) window
+        self.main_window = MainWindow()
+        self.main_window.show()
+        self.close()
+
+    def openBackWindow(self):
+        self.back_window = TheoryWindow()
+        self.back_window.show()
+        self.close()
 
 
-class MyApp(QtWidgets.QMainWindow):
+class TheoryWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        super(MyApp, self).__init__()
+        super().__init__()
+        uic.loadUi('ui/theory_template_main.ui', self)
+        self.main_window, self.next_window = MainWindow(), TheoryWindowSecond()
+
+        self.buttonBack.clicked.connect(self.openMainWindow)
+        self.buttonForward.clicked.connect(self.openNextWindow)
+
+    def openMainWindow(self):
+        self.main_window.show()
+        self.close()
+
+    def openNextWindow(self):
+        self.next_window.show()
+        self.close()
+
+
+class MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
         self.auth_window = None
         uic.loadUi('ui/app.ui', self)
 
-        # Set the icon for the button
-        self.buttonBasics.setIcon(QtGui.QIcon('ui/buttonBasics.png'))
+        for i in range(1, 8):
+            getattr(self, f'buttonBasics_{i}').clicked.connect(self.open_theory_window)
 
-        # Connect the button click to the function that opens the auth window
-        self.buttonBasics.clicked.connect(self.openAuthWindow)
-
-    def openAuthWindow(self):
-        self.auth_window = AuthWindow()  # Create an instance of the AuthWindow
-        self.auth_window.show()  # Show the auth window
-        self.close()  # Close the main window
+    def open_theory_window(self):
+        self.theory_window = TheoryWindow()
+        self.theory_window.show()
+        self.close()
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
 
-    # Setting the style and palette
-    app.setStyle("Fusion")  # Enhanced style for a modern look
-    app.setPalette(QtWidgets.QApplication.style().standardPalette())  # Set the standard palette
-
-    window = MyApp()
+    window = MainWindow()
     window.show()
-    sys.exit(app.exec())  # Changed from exec_() to exec()
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':

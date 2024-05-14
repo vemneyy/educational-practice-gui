@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>930</width>
-    <height>845</height>
+    <width>828</width>
+    <height>687</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>930</width>
-    <height>845</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -31,26 +31,33 @@
   <property name="windowTitle">
    <string>Обучащее приложение &quot;Физика. Электричество&quot;</string>
   </property>
-  <property name="documentMode">
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../images/trainer.png</normaloff>../images/trainer.png</iconset>
+  </property>
+  <property name="autoFillBackground">
    <bool>true</bool>
   </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <property name="tabShape">
-   <enum>QTabWidget::Triangular</enum>
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="labelLections">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>120</y>
-      <width>151</width>
+      <x>330</x>
+      <y>80</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -74,8 +81,8 @@
    <widget class="QLabel" name="labelPractice">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>600</y>
+      <x>330</x>
+      <y>470</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -83,7 +90,7 @@
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>18</pointsize>
+      <pointsize>16</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -104,8 +111,8 @@
    <widget class="QLabel" name="labelBasics">
     <property name="geometry">
      <rect>
-      <x>41</x>
-      <y>181</y>
+      <x>30</x>
+      <y>120</y>
       <width>251</width>
       <height>23</height>
      </rect>
@@ -113,7 +120,7 @@
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -123,95 +130,70 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBasics">
+   <widget class="QPushButton" name="buttonBasics_1">
     <property name="geometry">
      <rect>
-      <x>91</x>
-      <y>211</y>
-      <width>150</width>
-      <height>150</height>
+      <x>90</x>
+      <y>150</y>
+      <width>125</width>
+      <height>125</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>150</width>
-      <height>150</height>
+      <width>100</width>
+      <height>100</height>
      </size>
     </property>
     <property name="text">
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="ui/resources.qrc">
-      <normaloff>:/images/picture.png</normaloff>:/images/picture.png</iconset>
+     <iconset>
+      <normaloff>../images/basic.png</normaloff>../images/basic.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>150</width>
-      <height>150</height>
+      <width>125</width>
+      <height>125</height>
      </size>
     </property>
    </widget>
    <widget class="QLabel" name="labelSchemes">
     <property name="geometry">
      <rect>
-      <x>311</x>
-      <y>181</y>
-      <width>301</width>
+      <x>300</x>
+      <y>120</y>
+      <width>221</width>
       <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Электрический ток и схемы</string>
+     <string>Электрический ток</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonSchemes">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>210</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelLawOm">
     <property name="geometry">
      <rect>
-      <x>671</x>
-      <y>181</y>
-      <width>181</width>
+      <x>200</x>
+      <y>290</y>
+      <width>161</width>
       <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -221,36 +203,11 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonLawOm">
-    <property name="geometry">
-     <rect>
-      <x>691</x>
-      <y>211</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelElectricPower">
     <property name="geometry">
      <rect>
-      <x>171</x>
-      <y>391</y>
+      <x>530</x>
+      <y>120</y>
       <width>291</width>
       <height>23</height>
      </rect>
@@ -258,7 +215,7 @@
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -268,44 +225,19 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonPower">
-    <property name="geometry">
-     <rect>
-      <x>241</x>
-      <y>421</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelMagnetism">
     <property name="geometry">
      <rect>
-      <x>521</x>
-      <y>391</y>
-      <width>191</width>
+      <x>430</x>
+      <y>290</y>
+      <width>221</width>
       <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -315,63 +247,19 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonMagnetism">
-    <property name="geometry">
-     <rect>
-      <x>541</x>
-      <y>421</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="buttonTest">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>680</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelTrainer">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>650</y>
-      <width>291</width>
+      <x>440</x>
+      <y>510</y>
+      <width>211</width>
       <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -381,38 +269,19 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonTrainer">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>680</y>
-      <width>150</width>
-      <height>150</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>150</width>
-      <height>150</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QLabel" name="labelTest">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>650</y>
-      <width>241</width>
+      <x>140</x>
+      <y>510</y>
+      <width>261</width>
       <height>23</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Roboto</family>
-      <pointsize>16</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -425,8 +294,8 @@
    <widget class="Line" name="lineSecond">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>590</y>
+      <x>-70</x>
+      <y>460</y>
       <width>1021</width>
       <height>20</height>
      </rect>
@@ -444,8 +313,8 @@
    <widget class="Line" name="lineFirst">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>110</y>
+      <x>-30</x>
+      <y>70</y>
       <width>1021</width>
       <height>20</height>
      </rect>
@@ -460,57 +329,208 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QPushButton" name="buttonBasics_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>10</y>
-      <width>411</width>
-      <height>91</height>
+      <x>350</x>
+      <y>150</y>
+      <width>125</width>
+      <height>125</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="layoutHead">
-     <item>
-      <widget class="QLabel" name="labelName">
-       <property name="font">
-        <font>
-         <family>Roboto</family>
-         <pointsize>24</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Физика. Электричество</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="labelDescription">
-       <property name="font">
-        <font>
-         <family>Roboto</family>
-         <pointsize>18</pointsize>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="text">
-        <string>Обучающий материал по предмету</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="minimumSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/electricity.png</normaloff>../images/electricity.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonBasics_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>320</y>
+      <width>125</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/resistance.png</normaloff>../images/resistance.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonBasics_4">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>150</y>
+      <width>125</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/power.png</normaloff>../images/power.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonBasics_5">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>320</y>
+      <width>125</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/magnetism.png</normaloff>../images/magnetism.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonBasics_6">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>540</y>
+      <width>125</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/test.png</normaloff>../images/test.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buttonBasics_7">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>540</y>
+      <width>125</width>
+      <height>125</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../images/trainer.png</normaloff>../images/trainer.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>125</width>
+      <height>125</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelName">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>10</y>
+      <width>501</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Roboto</family>
+      <pointsize>27</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Физика. Электричество</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
  </widget>
  <resources>
-  <include location="ui/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

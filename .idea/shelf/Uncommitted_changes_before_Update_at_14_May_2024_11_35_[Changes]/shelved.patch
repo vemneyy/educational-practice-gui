@@ -1,0 +1,17 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import sys\r\n\r\nfrom PyQt5 import QtWidgets, uic, QtGui, QtCore\r\n\r\n\r\nclass MyApp(QtWidgets.QMainWindow):\r\n    def __init__(self):\r\n        super(MyApp, self).__init__()\r\n        uic.loadUi('app.ui', self)\r\n\r\n        # Получение экрана и DPI\r\n        screen = QtWidgets.QApplication.screens()[0]\r\n        dpi = screen.logicalDotsPerInch()\r\n        self.scale_factor = dpi / 96  # 96 DPI - обычно стандартный DPI\r\n\r\n        # Масштабирование окна с округлением до целых значений\r\n        min_width = int(560 * self.scale_factor)\r\n        min_height = int(500 * self.scale_factor)\r\n        self.setMinimumSize(min_width, min_height)\r\n        self.setMaximumSize(min_width, min_height)\r\n\r\n        # Установка иконки для кнопки\r\n        self.buttonBasics.setIcon(QtGui.QIcon('picture.png'))  # Путь к файлу изображения\r\n\r\n\r\ndef main():\r\n    app = QtWidgets.QApplication(sys.argv)\r\n\r\n    app.setStyle(\"fusion\")  # Улучшенный стиль для современного вида\r\n    app.setPalette(QtWidgets.QApplication.style().standardPalette())  # Установка стандартной палитры\r\n    window = MyApp()\r\n    window.show()\r\n    sys.exit(app.exec_())\r\n\r\n\r\nif __name__ == '__main__':\r\n    main()\r\n
+===================================================================
+diff --git a/main.py b/main.py
+--- a/main.py	
++++ b/main.py	
+@@ -11,7 +11,7 @@
+         # Получение экрана и DPI
+         screen = QtWidgets.QApplication.screens()[0]
+         dpi = screen.logicalDotsPerInch()
+-        self.scale_factor = dpi / 96  # 96 DPI - обычно стандартный DPI
++        self.scale_factor = dpi / 56  # 96 DPI - обычно стандартный DPI
+ 
+         # Масштабирование окна с округлением до целых значений
+         min_width = int(560 * self.scale_factor)
