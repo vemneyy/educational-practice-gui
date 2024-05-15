@@ -60,10 +60,10 @@
    <widget class="QLabel" name="labelLections">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>330</x>
       <y>80</y>
-      <width>161</width>
-      <height>31</height>
+      <width>180</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
@@ -96,8 +96,8 @@
      <rect>
       <x>330</x>
       <y>470</y>
-      <width>181</width>
-      <height>31</height>
+      <width>180</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="font">
@@ -337,7 +337,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBasics_3">
+   <widget class="QPushButton" name="buttonBasics_4">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -366,7 +366,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBasics_4">
+   <widget class="QPushButton" name="buttonBasics_3">
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -424,7 +424,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBasics_6">
+   <widget class="QPushButton" name="buttonPractice_1">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -453,7 +453,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBasics_7">
+   <widget class="QPushButton" name="buttonPractice_2">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -485,7 +485,7 @@
    <widget class="QLabel" name="labelName">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>180</x>
       <y>10</y>
       <width>501</width>
       <height>61</height>
@@ -508,8 +508,6 @@
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

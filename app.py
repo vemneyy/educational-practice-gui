@@ -6,17 +6,18 @@ from PyQt6.QtWidgets import QMainWindow, QApplication
 
 
 class TheoryWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, theory_number):
         super().__init__()
         uic.loadUi('ui/theory_template.ui', self)
         self.main_window = MainWindow()
         self.current_page = 1
         self.total_pages = 3
         self.window_name = 'Теория'
+        self.theory_number = theory_number  # Сохраняем номер теории
 
         self.buttonBack.clicked.connect(self.openMainWindow)
         self.buttonForward.clicked.connect(self.loadNextPage)
-        self.buttonRevert.clicked.connect(self.revertPage)
+        self.buttonRevert.clicked.connect(self.loadPreviousPage)
         self.buttonRevert.setVisible(False)
         self.buttonPrint.clicked.connect(self.printDocument)  # Connect print button
 
@@ -28,7 +29,7 @@ class TheoryWindow(QMainWindow):
 
     def loadTextFromFile(self):
         try:
-            file_path = f'theory/first_theory/page_{self.current_page}.html'
+            file_path = f'theory/theory_{self.theory_number}/page_{self.current_page}.html'
             with open(file_path, 'r', encoding='utf-8') as file:
                 html_content = file.read()
                 self.textBrowser.setHtml(html_content)
@@ -54,7 +55,7 @@ class TheoryWindow(QMainWindow):
         else:
             self.buttonForward.setVisible(False)
 
-    def revertPage(self):
+    def loadPreviousPage(self):
         if self.current_page > 1:
             self.current_page -= 1
             self.loadTextFromFile()
@@ -73,11 +74,11 @@ class MainWindow(QMainWindow):
         self.auth_window = None
         uic.loadUi('ui/app.ui', self)
 
-        for i in range(1, 8):
-            getattr(self, f'buttonBasics_{i}').clicked.connect(self.open_theory_window)
+        for i in range(1, 6):
+            getattr(self, f'buttonBasics_{i}').clicked.connect(lambda _, x=i: self.open_theory_window(x))
 
-    def open_theory_window(self):
-        self.theory_window = TheoryWindow()
+    def open_theory_window(self, theory_number):
+        self.theory_window = TheoryWindow(theory_number)
         self.theory_window.show()
         self.close()
 

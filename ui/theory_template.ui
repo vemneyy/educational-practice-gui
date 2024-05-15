@@ -67,8 +67,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>950</x>
       <y>65</y>
-      <width>93</width>
-      <height>28</height>
+      <width>95</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -86,8 +86,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>950</x>
       <y>10</y>
-      <width>93</width>
-      <height>28</height>
+      <width>95</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -105,8 +105,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>950</x>
       <y>100</y>
-      <width>93</width>
-      <height>28</height>
+      <width>95</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -137,8 +137,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>950</x>
       <y>650</y>
-      <width>93</width>
-      <height>28</height>
+      <width>95</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="font">
@@ -151,10 +151,21 @@ p, li { white-space: pre-wrap; }
      <string>Печать</string>
     </property>
    </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>640</y>
+      <width>118</width>
+      <height>3</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
   </widget>
  </widget>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
