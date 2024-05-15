@@ -1,8 +1,8 @@
 import sys
 
-from PyQt6 import uic
+from PyQt6 import uic, QtWidgets
 from PyQt6.QtPrintSupport import QPrinter, QPrintDialog
-from PyQt6.QtWidgets import QMainWindow, QApplication
+from PyQt6.QtWidgets import QMainWindow
 
 
 class TheoryWindow(QMainWindow):
@@ -14,11 +14,11 @@ class TheoryWindow(QMainWindow):
         self.total_pages = 3
         self.window_name = 'Теория'
         self.theory_number = theory_number  # Сохраняем номер теории
-
+        self.buttonRevert.setEnabled(False)
         self.buttonBack.clicked.connect(self.openMainWindow)
         self.buttonForward.clicked.connect(self.loadNextPage)
         self.buttonRevert.clicked.connect(self.loadPreviousPage)
-        self.buttonRevert.setVisible(False)
+
         self.buttonPrint.clicked.connect(self.printDocument)  # Connect print button
 
         self.loadTextFromFile()
@@ -34,15 +34,13 @@ class TheoryWindow(QMainWindow):
                 html_content = file.read()
                 self.textBrowser.setHtml(html_content)
 
-            self.buttonRevert.setVisible(self.current_page > 1)
+            self.buttonRevert.setEnabled(self.current_page > 1)
 
             if self.current_page < self.total_pages:
-                self.buttonForward.setVisible(True)
+                self.buttonForward.setEnabled(True)
                 self.buttonRevert.move(950, 100)
             else:
-                self.buttonForward.setVisible(False)
-                self.buttonRevert.move(950, 65)
-
+                self.buttonForward.setEnabled(False)
         except FileNotFoundError:
             self.textBrowser.setHtml('<p>Файл не найден.</p>')
         except Exception as e:
@@ -84,7 +82,9 @@ class MainWindow(QMainWindow):
 
 
 def main():
-    app = QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
+    app.setStyle("Fusion")  # Enhanced style for a modern look
+
     window = MainWindow()
     window.show()
     sys.exit(app.exec())

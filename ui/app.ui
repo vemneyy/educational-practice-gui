@@ -48,6 +48,11 @@
     min-width: 2px;
     padding: 6px;
 }
+
+QPushButton:hover {
+    background-color: #f0f0f0; /* цвет фона при наведении, немного темнее */
+    border-color: #f0f0f0; /* цвет границы при наведении, немного темнее */
+}
 </string>
   </property>
   <property name="documentMode">
@@ -352,6 +357,9 @@
       <height>100</height>
      </size>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -361,9 +369,12 @@
     </property>
     <property name="iconSize">
      <size>
-      <width>125</width>
-      <height>125</height>
+      <width>170</width>
+      <height>170</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonBasics_3">
@@ -415,12 +426,12 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../images/magnetism.png</normaloff>../images/magnetism.png</iconset>
+      <normaloff>../../../Downloads/748981.png</normaloff>../../../Downloads/748981.png</iconset>
     </property>
     <property name="iconSize">
      <size>
-      <width>125</width>
-      <height>125</height>
+      <width>115</width>
+      <height>115</height>
      </size>
     </property>
    </widget>
