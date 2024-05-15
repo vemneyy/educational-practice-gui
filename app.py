@@ -1,50 +1,75 @@
 import sys
-
 from PyQt6 import QtWidgets, uic
+from PyQt6.QtWidgets import QTextBrowser, QMainWindow, QApplication
+from PyQt6.QtPrintSupport import QPrinter, QPrintDialog
+import os
 
 
-class TheoryWindowSecond(QtWidgets.QMainWindow):
-    def __init__(self):
-        super(TheoryWindowSecond, self).__init__()
-        self.back_window = None
-        self.main_window = None
-        uic.loadUi('ui/theory_template_other.ui', self)
-
-        self.buttonBack.clicked.connect(self.openBackWindow)
-        self.buttonForward.clicked.connect(self.openMainWindow)
-
-    def openMainWindow(self):
-        self.main_window = MainWindow()
-        self.main_window.show()
-        self.close()
-
-    def openBackWindow(self):
-        self.back_window = TheoryWindow()
-        self.back_window.show()
-        self.close()
-
-
-class TheoryWindow(QtWidgets.QMainWindow):
+class TheoryWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('ui/theory_template_main.ui', self)
-        self.main_window, self.next_window = MainWindow(), TheoryWindowSecond()
+        uic.loadUi('ui/theory_template.ui', self)
+        self.main_window = MainWindow()
+        self.current_page = 1
+        self.total_pages = 3
+        self.window_name = 'Теория'
 
         self.buttonBack.clicked.connect(self.openMainWindow)
-        self.buttonForward.clicked.connect(self.openNextWindow)
+        self.buttonForward.clicked.connect(self.loadNextPage)
+        self.buttonRevert.clicked.connect(self.revertPage)
+        self.buttonRevert.setVisible(False)
+        self.buttonPrint.clicked.connect(self.printDocument)  # Connect print button
+
+        self.loadTextFromFile()
 
     def openMainWindow(self):
         self.main_window.show()
         self.close()
 
-    def openNextWindow(self):
-        self.next_window.show()
-        self.close()
+    def loadTextFromFile(self):
+        try:
+            file_path = f'theory/first_theory/page_{self.current_page}.html'
+            with open(file_path, 'r', encoding='utf-8') as file:
+                html_content = file.read()
+                self.textBrowser.setHtml(html_content)
+
+            self.buttonRevert.setVisible(self.current_page > 1)
+
+            if self.current_page < self.total_pages:
+                self.buttonForward.setVisible(True)
+                self.buttonRevert.move(950, 100)
+            else:
+                self.buttonForward.setVisible(False)
+                self.buttonRevert.move(950, 65)
+
+        except FileNotFoundError:
+            self.textBrowser.setHtml('<p>Файл не найден.</p>')
+        except Exception as e:
+            self.textBrowser.setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
+
+    def loadNextPage(self):
+        if self.current_page < self.total_pages:
+            self.current_page += 1
+            self.loadTextFromFile()
+        else:
+            self.buttonForward.setVisible(False)
+
+    def revertPage(self):
+        if self.current_page > 1:
+            self.current_page -= 1
+            self.loadTextFromFile()
+
+    def printDocument(self):
+        printer = QPrinter()
+        dialog = QPrintDialog(printer, self)
+        if dialog.exec() == QPrintDialog.DialogCode.Accepted:
+            self.textBrowser.print(printer)
 
 
-class MainWindow(QtWidgets.QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        self.theory_window = None
         self.auth_window = None
         uic.loadUi('ui/app.ui', self)
 
@@ -58,8 +83,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
 def main():
-    app = QtWidgets.QApplication(sys.argv)
-
+    app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
