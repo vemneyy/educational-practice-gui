@@ -1,6 +1,7 @@
 import unittest
 
 from PyQt6.QtWidgets import QApplication
+
 from app import TheoryWindow
 
 app = QApplication([])

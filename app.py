@@ -1,8 +1,8 @@
 import sys
-from PyQt6 import QtWidgets, uic
-from PyQt6.QtWidgets import QTextBrowser, QMainWindow, QApplication
+
+from PyQt6 import uic
 from PyQt6.QtPrintSupport import QPrinter, QPrintDialog
-import os
+from PyQt6.QtWidgets import QMainWindow, QApplication
 
 
 class TheoryWindow(QMainWindow):
