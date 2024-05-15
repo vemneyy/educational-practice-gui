@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Обучащее приложение &quot;Физика. Электричество&quot;</string>
+   <string>Обучащее приложение &quot;Физика. Электричество.";</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -426,7 +426,7 @@ QPushButton:hover {
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../Downloads/748981.png</normaloff>../../../Downloads/748981.png</iconset>
+      <normaloff>../images/magnetism.png</normaloff>../images/magnetism.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -511,7 +511,7 @@ QPushButton:hover {
      </font>
     </property>
     <property name="text">
-     <string>Физика. Электричество</string>
+     <string>Физика. Электричество.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
