@@ -66,7 +66,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>950</x>
-      <y>65</y>
+      <y>66</y>
       <width>95</width>
       <height>30</height>
      </rect>
@@ -81,11 +81,11 @@ p, li { white-space: pre-wrap; }
      <string>Вперед</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonBack">
+   <widget class="QPushButton" name="buttonMain">
     <property name="geometry">
      <rect>
       <x>950</x>
-      <y>10</y>
+      <y>11</y>
       <width>95</width>
       <height>30</height>
      </rect>
@@ -100,11 +100,11 @@ p, li { white-space: pre-wrap; }
      <string>В меню</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonRevert">
+   <widget class="QPushButton" name="buttonBack">
     <property name="geometry">
      <rect>
       <x>950</x>
-      <y>100</y>
+      <y>101</y>
       <width>95</width>
       <height>30</height>
      </rect>
@@ -123,7 +123,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>940</x>
-      <y>40</y>
+      <y>41</y>
       <width>120</width>
       <height>20</height>
      </rect>
@@ -178,8 +178,8 @@ p, li { white-space: pre-wrap; }
    </widget>
    <zorder>scrollArea</zorder>
    <zorder>buttonForward</zorder>
+   <zorder>buttonMain</zorder>
    <zorder>buttonBack</zorder>
-   <zorder>buttonRevert</zorder>
    <zorder>buttonPrint</zorder>
    <zorder>line</zorder>
    <zorder>line_2</zorder>
