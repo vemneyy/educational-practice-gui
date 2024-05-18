@@ -1,10 +1,61 @@
-import json
 import os
+import random
 import sys
 
 from PyQt6 import uic, QtWidgets
 from PyQt6.QtPrintSupport import QPrinter, QPrintDialog
 from PyQt6.QtWidgets import QMainWindow
+
+
+class TrainerWindow(QMainWindow):
+    def __init__(self):
+        super(TrainerWindow, self).__init__()
+        self.main_window = MainWindow()
+        self.trainer_window = None
+        uic.loadUi('ui/trainer_template.ui', self)
+
+        self.buttonMain.clicked.connect(self.openMainWindow)
+        self.buttonGenerate.clicked.connect(self.generateValues)  # Связываем кнопку с методом генерации
+
+        self.file_path = 'practice/practice_1.html'
+        self.generateValues()
+
+    def openMainWindow(self):
+        self.main_window.show()
+        self.close()
+
+    def load_html(self):
+        try:
+            with open(self.file_path, 'r', encoding='utf-8') as file:
+                html_content = file.read()
+                self.exFirst.setHtml(html_content)
+        except FileNotFoundError:
+            self.exFirst.setHtml('<p>Файл не найден.</p>')
+            self.buttonForward.setEnabled(False)
+        except Exception as e:
+            self.exFirst.setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
+            self.buttonForward.setEnabled(False)
+
+    def generateValues(self):
+        I1 = random.randint(1, 10)
+        R1 = random.randint(1, 100)
+        R2 = random.randint(1, 100)
+        I2 = random.randint(1, 10)
+
+        try:
+            with open(self.file_path, 'r', encoding='utf-8') as file:
+                html_content = file.read()
+
+            html_content = html_content.replace('{I1}', f'{I1}')
+            html_content = html_content.replace('{R1}', f'{R1}')
+            html_content = html_content.replace('{R2}', f'{R2}')
+            html_content = html_content.replace('{I2}', f'{I2}')
+
+            self.exFirst.setHtml(html_content)
+        except FileNotFoundError:
+            self.exFirst.setHtml('<p>Файл не найден.</p>')
+        except Exception as e:
+            self.exFirst.setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
 
 
 class TheoryWindow(QMainWindow):
@@ -110,6 +161,7 @@ class TheoryWindow(QMainWindow):
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        self.trainer_window = None
         self.theory_window = None
         uic.loadUi('ui/app.ui', self)
 
@@ -118,10 +170,16 @@ class MainWindow(QMainWindow):
         self.buttonBasics_3.clicked.connect(lambda: self.open_theory_window(3, 'Basics'))
         self.buttonBasics_4.clicked.connect(lambda: self.open_theory_window(4, 'Basics'))
         self.buttonBasics_5.clicked.connect(lambda: self.open_theory_window(5, 'Магнетизм'))
+        self.buttonPractice_2.clicked.connect(lambda: self.open_trainer_window())
 
     def open_theory_window(self, theory_number, window_name):
         self.theory_window = TheoryWindow(theory_number, window_name)
         self.theory_window.show()
+        self.close()
+
+    def open_trainer_window(self):
+        self.trainer_window = TrainerWindow()
+        self.trainer_window.show()
         self.close()
 
 
