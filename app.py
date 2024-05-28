@@ -15,9 +15,9 @@ class ConfirmationDialog(QDialog):
         self.buttonNo.clicked.connect(self.reject)
 
 
-class ConfirmationDialog_Test(QDialog):
+class ConfirmationDialogTest(QDialog):
     def __init__(self, parent=None):
-        super(ConfirmationDialog_Test, self).__init__(parent)
+        super(ConfirmationDialogTest, self).__init__(parent)
         uic.loadUi('ui/window_test_confirm.ui', self)
         self.buttonYes.clicked.connect(self.accept)
         self.buttonNo.clicked.connect(self.reject)
@@ -37,9 +37,10 @@ class TestWindow(QMainWindow):
         self.buttonBack.clicked.connect(self.goBack)
         self.buttonForward.clicked.connect(self.goForward)
 
-        self.total_tabs = 9  # Total number of tabs
-        self.current_tab_index = 0  # Starting index
+        self.total_tabs = 9
+        self.current_tab_index = 0
 
+        self.tabWidget.currentChanged.connect(self.updateCurrentTabIndex)
         self.updateNavigationButtons()
 
     def showConfirmationDialog(self):
@@ -48,8 +49,9 @@ class TestWindow(QMainWindow):
             self.openMainWindow()
 
     def showConfirmationDialog_Final(self):
-        dialog = ConfirmationDialog_Test(self)
+        dialog = ConfirmationDialogTest(self)
         if dialog.exec():
+            self.checkFinalAnswers()
             self.openMainWindow()
 
     def openMainWindow(self):
@@ -68,39 +70,76 @@ class TestWindow(QMainWindow):
             self.tabWidget.setCurrentIndex(self.current_tab_index)
             self.updateNavigationButtons()
 
+    def updateCurrentTabIndex(self, index):
+        self.current_tab_index = index
+        self.updateNavigationButtons()
+
     def updateNavigationButtons(self):
         self.buttonBack.setEnabled(self.current_tab_index > 0)
         self.buttonForward.setEnabled(self.current_tab_index < self.total_tabs - 1)
+        if not self.buttonFinal.isEnabled() and self.current_tab_index == self.total_tabs - 1:
+            self.buttonFinal.setEnabled(True)
+
+    def checkFinalAnswers(self):
+        correct_answers = 0
+
+        if self.radioButton_2.isChecked():
+            correct_answers += 1
+        if self.radioButton_19.isChecked():
+            correct_answers += 1
+        if self.line_2.text() == "Поляризация":
+            correct_answers += 1
+        if self.radioButton_6.isChecked():
+            correct_answers += 1
+        if self.line_3.text() == "Электромагнитная индукция":
+            correct_answers += 1
+        if self.radioButton_10.isChecked():
+            correct_answers += 1
+        if self.line_4.text() == "Сверхпроводимость":
+            correct_answers += 1
+        if self.radioButton_13.isChecked():
+            correct_answers += 1
+        if self.line_5.text() == "Постоянный ток":
+            correct_answers += 1
+
+        print(f"{correct_answers}/9")
 
 
 class TrainerWindow(QMainWindow):
     def __init__(self):
         super(TrainerWindow, self).__init__()
-        self.calculated_r_2 = None
-        self.I1 = None
-        self.R1 = None
-        self.R2 = None
-        self.I2 = None
-        self.calculated_r = None
+        self.initialize_variables()
         self.main_window = MainWindow()
-        self.trainer_window = None
         uic.loadUi('ui/trainer_template.ui', self)
-
-        self.buttonMain.clicked.connect(self.openMainWindow)
-        self.buttonMain_2.clicked.connect(self.openMainWindow)
-        self.buttonMain_3.clicked.connect(self.openMainWindow)
-        self.buttonGenerate.clicked.connect(self.generateValues)  # Связываем кнопку с методом генерации
-        self.buttonSubmit_1.clicked.connect(self.submitValue)
-        self.buttonGenerate_2.clicked.connect(self.generateValues)  # Связываем кнопку с методом генерации
-        self.buttonGenerate_3.clicked.connect(self.generateValues)  # Связываем кнопку с методом генерации
-
+        self.setup_connections()
         self.file_paths = {
             'exFirst_1': 'practice/practice_1.html',
             'exFirst_2': 'practice/practice_2.html',
             'exFirst_3': 'practice/practice_3.html'
         }
-
         self.generateValues()
+
+    def initialize_variables(self):
+        self.calculated_r_3 = None
+        self.calculated_r_2 = None
+        self.calculated_r = None
+        self.I1 = None
+        self.R1 = None
+        self.R2 = None
+        self.I2 = None
+
+    def setup_connections(self):
+        buttons_to_main = [self.buttonMain, self.buttonMain_2, self.buttonMain_3]
+        for button in buttons_to_main:
+            button.clicked.connect(self.openMainWindow)
+
+        buttons_to_generate = [self.buttonGenerate, self.buttonGenerate_2, self.buttonGenerate_3]
+        for button in buttons_to_generate:
+            button.clicked.connect(self.generateValues)
+
+        self.buttonSubmit_1.clicked.connect(lambda: self.submit_value(self.line_1, self.result_1, self.calculated_r))
+        self.buttonSubmit_2.clicked.connect(lambda: self.submit_value(self.line_2, self.result_2, self.calculated_r_2))
+        self.buttonSubmit_3.clicked.connect(lambda: self.submit_value(self.line_3, self.result_3, self.calculated_r_3))
 
     def openMainWindow(self):
         self.main_window.show()
@@ -121,59 +160,79 @@ class TrainerWindow(QMainWindow):
 
     def generateValues(self):
         while True:
-            self.I1 = random.randint(1, 20)
-            self.R1 = random.randint(10, 100)
-            self.R2 = random.randint(10, 100)
-            self.I2 = random.randint(1, 20)
-            self.R1_2 = random.randint(1, 100)
-            self.R2_2 = random.randint(1, 100)
-            self.R3_2 = random.randint(1, 100)
-            self.R4_2 = random.randint(1, 100)
+            self.set_random_values()
+            calculated_r = self.calculate_r()
+            calculated_r_2 = self.calculate_r_2()
+            calculated_r_3 = self.calculate_r_3()
 
-            calculated_r = ((self.I1 - self.I2) * (self.R1 + self.R2)) / self.I2
-            calculated_r_2 = self.R1_2 + (self.R2_2 * self.R3_2) / (self.R2_2 + self.R3_2) + self.R4_2
-
-            if calculated_r >= 1 and calculated_r_2 >= 1:
+            if self.valid_calculations(calculated_r, calculated_r_2, calculated_r_3):
                 self.calculated_r = round(calculated_r, 2)
                 self.calculated_r_2 = round(calculated_r_2, 2)
+                self.calculated_r_3 = round(calculated_r_3, 2)
                 break
+        self.update_html_files()
 
+    def set_random_values(self):
+        self.I1 = random.randint(1, 20)
+        self.R1 = random.randint(10, 100)
+        self.R2 = random.randint(10, 100)
+        self.I2 = random.randint(1, 20)
+        self.R1_2 = random.randint(1, 100)
+        self.R2_2 = random.randint(1, 100)
+        self.R3_2 = random.randint(1, 100)
+        self.R4_2 = random.randint(1, 100)
+        self.E1 = random.randint(1, 20)
+        self.E2 = random.randint(1, 10)
+        self.E3 = random.randint(1, 10)
+        self.E4 = random.randint(1, 10)
 
+    def calculate_r(self):
+        return ((self.I1 - self.I2) * (self.R1 + self.R2)) / self.I2
+
+    def calculate_r_2(self):
+        return self.R1_2 + (self.R2_2 * self.R3_2) / (self.R2_2 + self.R3_2) + self.R4_2
+
+    def calculate_r_3(self):
+        return (self.E2 * (1 / self.E3) / (1 / self.E4) ** 2) * self.E1
+
+    def valid_calculations(self, calculated_r, calculated_r_2, calculated_r_3):
+        return calculated_r >= 1 and calculated_r_2 and calculated_r_3 >= 1
+
+    def update_html_files(self):
         try:
             for key, path in self.file_paths.items():
                 with open(path, 'r', encoding='utf-8') as file:
                     html_content = file.read()
 
-                html_content = html_content.replace('{I1}', f'{self.I1}')
-                html_content = html_content.replace('{R1}', f'{self.R1}')
-                html_content = html_content.replace('{R2}', f'{self.R2}')
-                html_content = html_content.replace('{I2}', f'{self.I2}')
-                html_content = html_content.replace('{R1_2}', f'{self.R1_2}')
-                html_content = html_content.replace('{R2_2}', f'{self.R2_2}')
-                html_content = html_content.replace('{R3_2}', f'{self.R3_2}')
-                html_content = html_content.replace('{R4_2}', f'{self.R4_2}')
+                variables = {
+                    '{I1}': self.I1, '{R1}': self.R1, '{R2}': self.R2, '{I2}': self.I2,
+                    '{R1_2}': self.R1_2, '{R2_2}': self.R2_2, '{R3_2}': self.R3_2, '{R4_2}': self.R4_2,
+                    '{E1}': self.E1, '{E2}': self.E2, '{E3}': self.E3, '{E4}': self.E4
+                }
+                for placeholder, value in variables.items():
+                    html_content = html_content.replace(placeholder, str(value))
 
                 getattr(self, key).setHtml(html_content)
+
                 self.result_1.setText("")
+                self.result_2.setText("")
+                self.result_3.setText("")
         except FileNotFoundError:
             getattr(self, key).setHtml('<p>Файл не найден.</p>')
         except Exception as e:
             getattr(self, key).setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
 
-    def submitValue(self):
+    def submit_value(self, line_edit, result_label, calculated_value):
         try:
-            entered_r = float(self.line_1.text())  # Get the text from line_1 and convert to float
-            if entered_r == round(self.calculated_r, 2):
-                self.result_1.setText("Результат верный!")
+            entered_r = float(line_edit.text())
+            if entered_r == calculated_value:
+                result_label.setText("Результат верный!")
             else:
-                self.result_1.setText("Результат неверный, попробуйте снова!")
-
-            print(f"Entered value: {entered_r}")  # Print the entered value
-            print(f"Calculated value: {round(self.calculated_r, 2)}")  # Print the calculated value
+                result_label.setText("Результат неверный, попробуйте снова!")
         except ValueError:
-            print("Please enter a valid number in line_1.")
+            result_label.setText("Введите корректное значение!")
         except ZeroDivisionError:
-            print("Division by zero occurred in the calculation.")
+            result_label.setText("Ошибка деления на ноль.")
 
 
 class TheoryWindow(QMainWindow):
@@ -234,7 +293,6 @@ class TheoryWindow(QMainWindow):
         if self.current_page == self.total_pages:
             self.buttonForward.setEnabled(False)
 
-
         else:
             self.buttonForward.setEnabled(True)
 
@@ -253,25 +311,6 @@ class TheoryWindow(QMainWindow):
         dialog = QPrintDialog(printer, self)
         if dialog.exec() == QPrintDialog.DialogCode.Accepted:
             self.textBrowser.print(printer)
-
-    # def update_user_cache(self):
-    #     cache_file = 'user.cache'
-    #     cache_data = {}
-    #
-    #     if os.path.exists(cache_file):
-    #         try:
-    #             with open(cache_file, 'r', encoding='utf-8') as file:
-    #                 cache_data = json.load(file)
-    #         except json.JSONDecodeError:
-    #             cache_data = {}
-    #     else:
-    #         with open(cache_file, 'w', encoding='utf-8') as file:
-    #             json.dump({}, file)
-    #
-    #     cache_data[f'theory_{self.theory_number}'] = True
-    #
-    #     with open(cache_file, 'w', encoding='utf-8') as file:
-    #         json.dump(cache_data, file, ensure_ascii=False, indent=4)
 
 
 class MainWindow(QMainWindow):
