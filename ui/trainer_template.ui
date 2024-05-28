@@ -22,6 +22,11 @@
     <height>690</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Тренажёр знаний</string>
   </property>
@@ -53,7 +58,7 @@ border-color: transparent;
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
       <kerning>false</kerning>
      </font>
     </property>
