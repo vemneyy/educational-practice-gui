@@ -209,25 +209,6 @@ p, li { white-space: pre-wrap; }
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="buttonQuiz">
-    <property name="geometry">
-     <rect>
-      <x>950</x>
-      <y>600</y>
-      <width>95</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Roboto</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Квиз</string>
-    </property>
-   </widget>
    <zorder>scrollArea</zorder>
    <zorder>buttonForward</zorder>
    <zorder>buttonMain</zorder>
@@ -236,7 +217,6 @@ p, li { white-space: pre-wrap; }
    <zorder>line</zorder>
    <zorder>line_2</zorder>
    <zorder>labelPage</zorder>
-   <zorder>buttonQuiz</zorder>
   </widget>
  </widget>
  <resources/>
