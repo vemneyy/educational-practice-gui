@@ -7,6 +7,43 @@ from PyQt6.QtPrintSupport import QPrinter, QPrintDialog
 from PyQt6.QtWidgets import QMainWindow, QDialog
 
 
+class TestResult(QMainWindow):
+    def __init__(self, results, first_name, last_name):
+        super(TestResult, self).__init__()
+        uic.loadUi('ui/test_result.ui', self)
+        self.buttonMain.clicked.connect(self.open_main_window)
+        self.update_labels(results)
+        self.label_2.setText(f"Результаты пользователя \"{first_name} {last_name}\"")
+
+    def open_main_window(self):
+        self.main_window = MainWindow()
+        self.main_window.show()
+        self.close()
+
+    def update_labels(self, results):
+        for i, result in enumerate(results, start=1):
+            label = getattr(self, f"exersise_{i}")
+            if result:
+                label.setText("выполнено")
+            else:
+                label.setText("не выполнено")
+
+
+class TestSign(QMainWindow):
+    def __init__(self):
+        super(TestSign, self).__init__()
+        uic.loadUi('ui/test_sign.ui', self)
+        self.buttonStart.clicked.connect(self.open_test_window)
+
+    def open_test_window(self):
+        first_name = self.line_firstName.text()
+        last_name = self.line_lastName.text()
+        print(first_name, last_name)
+        self.main_window = TestWindow(first_name, last_name)
+        self.main_window.show()
+        self.close()
+
+
 class ConfirmationDialog(QDialog):
     def __init__(self, parent=None):
         super(ConfirmationDialog, self).__init__(parent)
@@ -24,11 +61,14 @@ class ConfirmationDialogTest(QDialog):
 
 
 class TestWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, first_name, last_name):
         super(TestWindow, self).__init__()
         self.main_window = MainWindow()
         self.test_window = None
         uic.loadUi('ui/test_template.ui', self)
+
+        self.first_name = first_name
+        self.last_name = last_name
 
         self.buttonFinal.setEnabled(False)
 
@@ -52,7 +92,13 @@ class TestWindow(QMainWindow):
         dialog = ConfirmationDialogTest(self)
         if dialog.exec():
             self.checkFinalAnswers()
-            self.openMainWindow()
+            self.openResultWindow()
+
+    def openResultWindow(self):
+        results = self.checkFinalAnswers()
+        self.trainer_window = TestResult(results, self.first_name, self.last_name)
+        self.trainer_window.show()
+        self.close()
 
     def openMainWindow(self):
         self.main_window.show()
@@ -82,27 +128,64 @@ class TestWindow(QMainWindow):
 
     def checkFinalAnswers(self):
         correct_answers = 0
+        results = []
 
         if self.radioButton_2.isChecked():
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.radioButton_19.isChecked():
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.line_2.text() == "Поляризация":
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.radioButton_6.isChecked():
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.line_3.text() == "Электромагнитная индукция":
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.radioButton_10.isChecked():
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.line_4.text() == "Сверхпроводимость":
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.radioButton_13.isChecked():
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
+
         if self.line_5.text() == "Постоянный ток":
             correct_answers += 1
+            results.append(True)
+        else:
+            results.append(False)
 
-        print(f"{correct_answers}/9")
+        print(f"{self.first_name} {self.last_name}: {correct_answers}/9")
+        return results
 
 
 class TrainerWindow(QMainWindow):
@@ -229,6 +312,7 @@ class TrainerWindow(QMainWindow):
                 result_label.setText("Результат верный!")
             else:
                 result_label.setText("Результат неверный, попробуйте снова!")
+                print(calculated_value)
         except ValueError:
             result_label.setText("Введите корректное значение!")
         except ZeroDivisionError:
@@ -335,7 +419,7 @@ class MainWindow(QMainWindow):
         self.close()
 
     def open_test_window(self):
-        self.test_window = TestWindow()
+        self.test_window = TestSign()
         self.test_window.show()
         self.close()
 
@@ -345,11 +429,28 @@ class MainWindow(QMainWindow):
         self.close()
 
 
+class HelloWindow(QMainWindow):
+    def __init__(self):
+        super(HelloWindow, self).__init__()
+        self.main_window = None
+        self.test_window = None
+        self.trainer_window = None
+        self.theory_window = None
+        uic.loadUi('ui/hello_window.ui', self)
+
+        self.pushButton.clicked.connect(lambda: self.open_main_window())
+
+    def open_main_window(self):
+        self.main_window = MainWindow()
+        self.main_window.show()
+        self.close()
+
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle("Fusion")
 
-    window = MainWindow()
+    window = HelloWindow()
     window.show()
     sys.exit(app.exec())
 
