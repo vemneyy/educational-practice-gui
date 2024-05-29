@@ -16,13 +16,17 @@ class TestResult(QMainWindow):
         self.update_labels(results)
         self.label_2.setText(f"Результаты пользователя \"{first_name.capitalize()} {last_name.capitalize()}\"")
 
-    # Открыть главное окно приложения
+    '''
+    Открыть главное окно приложения
+    '''
     def open_main_window(self):
         self.main_window = MainWindow()
         self.main_window.show()
         self.close()
 
-    # Обновить метки с результатами выполнения заданий
+    '''
+    Обновить метки с результатами выполнения заданий
+    '''
     def update_labels(self, results):
         completed_tasks = sum(results)
         total_tasks = len(results)
@@ -42,7 +46,9 @@ class TestSign(QMainWindow):
         uic.loadUi('ui/test_sign.ui', self)
         self.buttonStart.clicked.connect(self.open_test_window)
 
-    # Открыть окно теста с передачей введенных данных пользователя
+    '''
+    Открыть окно теста с передачей введенных данных пользователя
+    '''
     def open_test_window(self):
         self.main_window = TestWindow(self.line_firstName.text(), self.line_lastName.text())
         self.main_window.show()
@@ -72,7 +78,6 @@ class TestWindow(QMainWindow):
     def __init__(self, first_name, last_name):
         super(TestWindow, self).__init__()
         self.main_window = MainWindow()
-        self.test_window = None
         uic.loadUi('ui/test_template.ui', self)
         self.first_name = first_name
         self.last_name = last_name
@@ -86,58 +91,76 @@ class TestWindow(QMainWindow):
         self.tabWidget.currentChanged.connect(self.updateCurrentTabIndex)
         self.updateNavigationButtons()
 
-    # Показать диалог подтверждения возврата на главное окно
+    '''
+    Показать диалог подтверждения возврата на главное окно
+    '''
     def showConfirmationDialog(self):
         dialog = ConfirmationDialog(self)
         if dialog.exec():
             self.openMainWindow()
 
-    # Показать диалог подтверждения завершения теста
+    '''
+    Показать диалог подтверждения завершения теста
+    '''
     def showConfirmationDialog_Final(self):
         dialog = ConfirmationDialogTest(self)
         if dialog.exec():
             self.checkFinalAnswers()
             self.openResultWindow()
 
-    # Открыть окно с результатами теста
+    '''
+    Открыть окно с результатами теста
+    '''
     def openResultWindow(self):
         results = self.checkFinalAnswers()
         self.trainer_window = TestResult(results, self.first_name, self.last_name)
         self.trainer_window.show()
         self.close()
 
-    # Открыть главное окно приложения
+    '''
+    Открыть главное окно приложения
+    '''
     def openMainWindow(self):
         self.main_window.show()
         self.close()
 
-    # Переход на предыдущую вкладку
+    '''
+    Переход на предыдущую вкладку
+    '''
     def goBack(self):
         if self.current_tab_index > 0:
             self.current_tab_index -= 1
             self.tabWidget.setCurrentIndex(self.current_tab_index)
             self.updateNavigationButtons()
 
-    # Переход на следующую вкладку
+    '''
+    Переход на следующую вкладку
+    '''
     def goForward(self):
         if self.current_tab_index < self.total_tabs - 1:
             self.current_tab_index += 1
             self.tabWidget.setCurrentIndex(self.current_tab_index)
             self.updateNavigationButtons()
 
-    # Обновление текущего индекса вкладки
+    '''
+    Обновление текущего индекса вкладки
+    '''
     def updateCurrentTabIndex(self, index):
         self.current_tab_index = index
         self.updateNavigationButtons()
 
-    # Обновление состояния кнопок навигации
+    '''
+    Обновление состояния кнопок навигации
+    '''
     def updateNavigationButtons(self):
         self.buttonBack.setEnabled(self.current_tab_index > 0)
         self.buttonForward.setEnabled(self.current_tab_index < self.total_tabs - 1)
         if not self.buttonFinal.isEnabled() and self.current_tab_index == self.total_tabs - 1:
             self.buttonFinal.setEnabled(True)
 
-    # Проверка правильности ответов на финальные вопросы
+    '''
+    Проверка правильности ответов на финальные вопросы
+    '''
     def checkFinalAnswers(self):
         questions = [
             (self.radioButton_2.isChecked, True),
@@ -165,7 +188,6 @@ class TestWindow(QMainWindow):
 class TrainerWindow(QMainWindow):
     def __init__(self):
         super(TrainerWindow, self).__init__()
-        self.initialize_variables()
         self.main_window = MainWindow()
         uic.loadUi('ui/trainer_template.ui', self)
         self.setup_connections()
@@ -176,17 +198,9 @@ class TrainerWindow(QMainWindow):
         }
         self.generateValues()
 
-    # Инициализация переменных
-    def initialize_variables(self):
-        self.calculated_r_3 = None
-        self.calculated_r_2 = None
-        self.calculated_r = None
-        self.I1 = None
-        self.R1 = None
-        self.R2 = None
-        self.I2 = None
-
-    # Настройка сигналов для кнопок
+    '''
+    Настройка сигналов для кнопок
+    '''
     def setup_connections(self):
         buttons_to_main = [self.buttonMain, self.buttonMain_2, self.buttonMain_3]
         for button in buttons_to_main:
@@ -198,12 +212,16 @@ class TrainerWindow(QMainWindow):
         self.buttonSubmit_2.clicked.connect(lambda: self.submit_value(self.line_2, self.result_2, self.calculated_r_2))
         self.buttonSubmit_3.clicked.connect(lambda: self.submit_value(self.line_3, self.result_3, self.calculated_r_3))
 
-    # Открыть главное окно приложения
+    '''
+    Открыть главное окно приложения
+    '''
     def openMainWindow(self):
         self.main_window.show()
         self.close()
 
-    # Загрузка HTML-файлов в виджеты
+    '''
+    Загрузка HTML-файлов в виджеты
+    '''
     def load_html(self):
         for key, path in self.file_paths.items():
             try:
@@ -217,7 +235,9 @@ class TrainerWindow(QMainWindow):
                 getattr(self, key).setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
                 self.buttonForward.setEnabled(False)
 
-    # Генерация случайных значений для тренажера
+    '''
+    Генерация случайных значений для тренажера
+    '''
     def generateValues(self):
         while True:
             self.set_random_values()
@@ -231,7 +251,9 @@ class TrainerWindow(QMainWindow):
                 break
         self.update_html_files()
 
-    # Установить случайные значения для переменных
+    '''
+    Установить случайные значения для переменных
+    '''
     def set_random_values(self):
         self.I1 = random.randint(1, 20)
         self.R1 = random.randint(10, 100)
@@ -246,23 +268,33 @@ class TrainerWindow(QMainWindow):
         self.E3 = random.randint(1, 10)
         self.E4 = random.randint(1, 10)
 
-    # Расчет значения сопротивления для первой задачи
+    '''
+    Расчет значения сопротивления для первой задачи
+    '''
     def calculate_r(self):
         return ((self.I1 - self.I2) * (self.R1 + self.R2)) / self.I2
 
-    # Расчет значения сопротивления для второй задачи
+    '''
+    Расчет значения сопротивления для второй задачи
+    '''
     def calculate_r_2(self):
         return self.R1_2 + (self.R2_2 * self.R3_2) / (self.R2_2 + self.R3_2) + self.R4_2
 
-    # Расчет значения сопротивления для третьей задачи
+    '''
+    Расчет значения сопротивления для третьей задачи
+    '''
     def calculate_r_3(self):
         return (self.E2 * (1 / self.E3) / (1 / self.E4) ** 2) * self.E1
 
-    # Проверка корректности рассчитанных значений
+    '''
+    Проверка корректности рассчитанных значений
+    '''
     def valid_calculations(self, calculated_r, calculated_r_2, calculated_r_3):
         return calculated_r >= 1 and calculated_r_2 and calculated_r_3 >= 1
 
-    # Обновление HTML-файлов с новыми значениями
+    '''
+    Обновление HTML-файлов с новыми значениями
+    '''
     def update_html_files(self):
         try:
             for key, path in self.file_paths.items():
@@ -284,7 +316,9 @@ class TrainerWindow(QMainWindow):
         except Exception as e:
             getattr(self, key).setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
 
-    # Отправка значения и проверка корректности ответа
+    '''
+    Отправка значения и проверка корректности ответа
+    '''
     def submit_value(self, line_edit, result_label, calculated_value):
         try:
             entered_r = float(line_edit.text())
@@ -316,7 +350,9 @@ class TheoryWindow(QMainWindow):
         self.buttonPrint.clicked.connect(self.printDocument)
         self.loadTextFromFile()
 
-    # Получить количество страниц теоретического материала
+    '''
+    Получить количество страниц теоретического материала
+    '''
     def get_total_pages(self):
         theory_path = f'theory/theory_{self.theory_number}'
         if os.path.exists(theory_path):
@@ -326,12 +362,16 @@ class TheoryWindow(QMainWindow):
             return total_pages
         return 0
 
-    # Открыть главное окно приложения
+    '''
+    Открыть главное окно приложения
+    '''
     def openMainWindow(self):
         self.main_window.show()
         self.close()
 
-    # Загрузить текст теоретического материала из файла
+    '''
+    Загрузить текст теоретического материала из файла
+    '''
     def loadTextFromFile(self):
         file_path = f'theory/theory_{self.theory_number}/page_{self.current_page}.html'
         try:
@@ -347,7 +387,9 @@ class TheoryWindow(QMainWindow):
             self.textBrowser.setHtml(f'<p>Ошибка при загрузке файла: {e}</p>')
             self.buttonForward.setEnabled(False)
 
-    # Загрузка следующей или предыдущей страницы теоретического материала
+    '''
+    Загрузка следующей или предыдущей страницы теоретического материала
+    '''
     def loadPage(self, direction):
         if direction == 'next' and self.current_page < self.total_pages:
             self.current_page += 1
@@ -364,11 +406,15 @@ class TheoryWindow(QMainWindow):
             self.buttonBack.setEnabled(True)
         self.updatePageLabel()
 
-    # Обновить метку с номером текущей страницы
+    '''
+    Обновить метку с номером текущей страницы
+    '''
     def updatePageLabel(self):
         self.labelPage.setText(f"{self.current_page}/{self.total_pages}")
 
-    # Печать текущей страницы теоретического материала
+    '''
+    Печать текущей страницы теоретического материала
+    '''
     def printDocument(self):
         printer = QPrinter()
         dialog = QPrintDialog(printer, self)
@@ -380,9 +426,6 @@ class TheoryWindow(QMainWindow):
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.test_window = None
-        self.trainer_window = None
-        self.theory_window = None
         uic.loadUi('ui/app.ui', self)
         self.buttonBasics_1.clicked.connect(lambda: self.open_theory_window(1, 'Основы электричества'))
         self.buttonBasics_2.clicked.connect(lambda: self.open_theory_window(2, 'Электрический ток'))
@@ -392,19 +435,25 @@ class MainWindow(QMainWindow):
         self.buttonPractice_1.clicked.connect(lambda: self.open_test_window())
         self.buttonPractice_2.clicked.connect(lambda: self.open_trainer_window())
 
-    # Открыть окно с теоретическим материалом
+    '''
+    Открыть окно с теоретическим материалом
+    '''
     def open_theory_window(self, theory_number, window_name):
         self.theory_window = TheoryWindow(theory_number, window_name)
         self.theory_window.show()
         self.close()
 
-    # Открыть окно теста
+    '''
+    Открыть окно теста
+    '''
     def open_test_window(self):
         self.test_window = TestSign()
         self.test_window.show()
         self.close()
 
-    # Открыть окно тренажера
+    '''
+    Открыть окно тренажера
+    '''
     def open_trainer_window(self):
         self.trainer_window = TrainerWindow()
         self.trainer_window.show()
@@ -415,14 +464,12 @@ class MainWindow(QMainWindow):
 class HelloWindow(QMainWindow):
     def __init__(self):
         super(HelloWindow, self).__init__()
-        self.main_window = None
-        self.test_window = None
-        self.trainer_window = None
-        self.theory_window = None
         uic.loadUi('ui/hello_window.ui', self)
         self.pushButton.clicked.connect(lambda: self.open_main_window())
 
-    # Открыть главное окно приложения
+    '''
+    Открыть главное окно приложения
+    '''
     def open_main_window(self):
         self.main_window = MainWindow()
         self.main_window.show()
