@@ -24,7 +24,6 @@ class TestResult(QMainWindow):
         completed_tasks = sum(results)
         total_tasks = len(results)
         self.label.setText(f"{completed_tasks}/{total_tasks}")
-
         for i, result in enumerate(results, start=1):
             label = getattr(self, f"exersise_{i}")
             if result:
@@ -67,20 +66,15 @@ class TestWindow(QMainWindow):
         self.main_window = MainWindow()
         self.test_window = None
         uic.loadUi('ui/test_template.ui', self)
-
         self.first_name = first_name
         self.last_name = last_name
-
         self.buttonFinal.setEnabled(False)
-
         self.buttonFinal.clicked.connect(self.showConfirmationDialog_Final)
         self.buttonMain.clicked.connect(self.showConfirmationDialog)
         self.buttonBack.clicked.connect(self.goBack)
         self.buttonForward.clicked.connect(self.goForward)
-
         self.total_tabs = 9
         self.current_tab_index = 0
-
         self.tabWidget.currentChanged.connect(self.updateCurrentTabIndex)
         self.updateNavigationButtons()
 
@@ -129,27 +123,24 @@ class TestWindow(QMainWindow):
 
     def checkFinalAnswers(self):
         questions = [
-            (self.radioButton_2.isChecked, True),  # Radio button question
-            (self.radioButton_19.isChecked, True),  # Radio button question
-            (lambda: self.line_2.text().strip().lower() == "поляризация".lower(), True),  # Text question
-            (self.radioButton_6.isChecked, True),  # Radio button question
-            (lambda: self.line_3.text().strip().lower() == "электромагнитная индукция".lower(), True),  # Text question
-            (self.radioButton_10.isChecked, True),  # Radio button question
-            (lambda: self.line_4.text().strip().lower() == "сверхпроводимость".lower(), True),  # Text question
-            (self.radioButton_13.isChecked, True),  # Radio button question
-            (lambda: self.line_5.text().strip().lower() == "постоянный ток".lower(), True)  # Text question
+            (self.radioButton_2.isChecked, True),
+            (self.radioButton_19.isChecked, True),
+            (lambda: self.line_2.text().strip().lower() == "поляризация".lower(), True),
+            (self.radioButton_6.isChecked, True),
+            (lambda: self.line_3.text().strip().lower() == "электромагнитная индукция".lower(), True),
+            (self.radioButton_10.isChecked, True),
+            (lambda: self.line_4.text().strip().lower() == "сверхпроводимость".lower(), True),
+            (self.radioButton_13.isChecked, True),
+            (lambda: self.line_5.text().strip().lower() == "постоянный ток".lower(), True)
         ]
-
         correct_answers = 0
         results = []
-
         for question, expected in questions:
             if question() == expected:
                 correct_answers += 1
                 results.append(True)
             else:
                 results.append(False)
-
         return results
 
 
@@ -180,11 +171,9 @@ class TrainerWindow(QMainWindow):
         buttons_to_main = [self.buttonMain, self.buttonMain_2, self.buttonMain_3]
         for button in buttons_to_main:
             button.clicked.connect(self.openMainWindow)
-
         buttons_to_generate = [self.buttonGenerate, self.buttonGenerate_2, self.buttonGenerate_3]
         for button in buttons_to_generate:
             button.clicked.connect(self.generateValues)
-
         self.buttonSubmit_1.clicked.connect(lambda: self.submit_value(self.line_1, self.result_1, self.calculated_r))
         self.buttonSubmit_2.clicked.connect(lambda: self.submit_value(self.line_2, self.result_2, self.calculated_r_2))
         self.buttonSubmit_3.clicked.connect(lambda: self.submit_value(self.line_3, self.result_3, self.calculated_r_3))
@@ -212,7 +201,6 @@ class TrainerWindow(QMainWindow):
             calculated_r = self.calculate_r()
             calculated_r_2 = self.calculate_r_2()
             calculated_r_3 = self.calculate_r_3()
-
             if self.valid_calculations(calculated_r, calculated_r_2, calculated_r_3):
                 self.calculated_r = round(calculated_r, 2)
                 self.calculated_r_2 = round(calculated_r_2, 2)
@@ -251,7 +239,6 @@ class TrainerWindow(QMainWindow):
             for key, path in self.file_paths.items():
                 with open(path, 'r', encoding='utf-8') as file:
                     html_content = file.read()
-
                 variables = {
                     '{I1}': self.I1, '{R1}': self.R1, '{R2}': self.R2, '{I2}': self.I2,
                     '{R1_2}': self.R1_2, '{R2_2}': self.R2_2, '{R3_2}': self.R3_2, '{R4_2}': self.R4_2,
@@ -259,9 +246,7 @@ class TrainerWindow(QMainWindow):
                 }
                 for placeholder, value in variables.items():
                     html_content = html_content.replace(placeholder, str(value))
-
                 getattr(self, key).setHtml(html_content)
-
                 self.result_1.setText("")
                 self.result_2.setText("")
                 self.result_3.setText("")
@@ -290,7 +275,6 @@ class TheoryWindow(QMainWindow):
         uic.loadUi('ui/theory_template.ui', self)
         self.main_window = MainWindow()
         self.setWindowTitle(window_name)
-
         self.current_page = 1
         self.theory_number = theory_number
         self.total_pages = self.get_total_pages()
@@ -299,7 +283,6 @@ class TheoryWindow(QMainWindow):
         self.buttonForward.clicked.connect(lambda: self.loadPage('next'))
         self.buttonBack.clicked.connect(lambda: self.loadPage('previous'))
         self.buttonPrint.clicked.connect(self.printDocument)
-
         self.loadTextFromFile()
 
     def get_total_pages(self):
@@ -321,7 +304,6 @@ class TheoryWindow(QMainWindow):
             with open(file_path, 'r', encoding='utf-8') as file:
                 html_content = file.read()
                 self.textBrowser.setHtml(html_content)
-
             self.buttonBack.setEnabled(self.current_page > 1)
             self.buttonForward.setEnabled(self.current_page < self.total_pages)
         except FileNotFoundError:
@@ -336,20 +318,15 @@ class TheoryWindow(QMainWindow):
             self.current_page += 1
         elif direction == 'previous' and self.current_page > 1:
             self.current_page -= 1
-
         self.loadTextFromFile()
-
         if self.current_page == self.total_pages:
             self.buttonForward.setEnabled(False)
-
         else:
             self.buttonForward.setEnabled(True)
-
         if self.current_page == 1:
             self.buttonBack.setEnabled(False)
         else:
             self.buttonBack.setEnabled(True)
-
         self.updatePageLabel()
 
     def updatePageLabel(self):
@@ -369,7 +346,6 @@ class MainWindow(QMainWindow):
         self.trainer_window = None
         self.theory_window = None
         uic.loadUi('ui/app.ui', self)
-
         self.buttonBasics_1.clicked.connect(lambda: self.open_theory_window(1, 'Основы электричества'))
         self.buttonBasics_2.clicked.connect(lambda: self.open_theory_window(2, 'Электрический ток'))
         self.buttonBasics_3.clicked.connect(lambda: self.open_theory_window(3, 'Электрическая мощность'))
@@ -402,7 +378,6 @@ class HelloWindow(QMainWindow):
         self.trainer_window = None
         self.theory_window = None
         uic.loadUi('ui/hello_window.ui', self)
-
         self.pushButton.clicked.connect(lambda: self.open_main_window())
 
     def open_main_window(self):
@@ -414,7 +389,6 @@ class HelloWindow(QMainWindow):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     app.setStyle("Fusion")
-
     window = HelloWindow()
     window.show()
     sys.exit(app.exec())
