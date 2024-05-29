@@ -13,7 +13,7 @@ class TestResult(QMainWindow):
         uic.loadUi('ui/test_result.ui', self)
         self.buttonMain.clicked.connect(self.open_main_window)
         self.update_labels(results)
-        self.label_2.setText(f"Результаты пользователя \"{first_name} {last_name}\"")
+        self.label_2.setText(f"Результаты пользователя \"{first_name.capitalize()} {last_name.capitalize()}\"")
 
     def open_main_window(self):
         self.main_window = MainWindow()
@@ -21,6 +21,10 @@ class TestResult(QMainWindow):
         self.close()
 
     def update_labels(self, results):
+        completed_tasks = sum(results)
+        total_tasks = len(results)
+        self.label.setText(f"{completed_tasks}/{total_tasks}")
+
         for i, result in enumerate(results, start=1):
             label = getattr(self, f"exersise_{i}")
             if result:
@@ -36,10 +40,7 @@ class TestSign(QMainWindow):
         self.buttonStart.clicked.connect(self.open_test_window)
 
     def open_test_window(self):
-        first_name = self.line_firstName.text()
-        last_name = self.line_lastName.text()
-        print(first_name, last_name)
-        self.main_window = TestWindow(first_name, last_name)
+        self.main_window = TestWindow(self.line_firstName.text(), self.line_lastName.text())
         self.main_window.show()
         self.close()
 
@@ -127,64 +128,28 @@ class TestWindow(QMainWindow):
             self.buttonFinal.setEnabled(True)
 
     def checkFinalAnswers(self):
+        questions = [
+            (self.radioButton_2.isChecked, True),  # Radio button question
+            (self.radioButton_19.isChecked, True),  # Radio button question
+            (lambda: self.line_2.text().strip().lower() == "поляризация".lower(), True),  # Text question
+            (self.radioButton_6.isChecked, True),  # Radio button question
+            (lambda: self.line_3.text().strip().lower() == "электромагнитная индукция".lower(), True),  # Text question
+            (self.radioButton_10.isChecked, True),  # Radio button question
+            (lambda: self.line_4.text().strip().lower() == "сверхпроводимость".lower(), True),  # Text question
+            (self.radioButton_13.isChecked, True),  # Radio button question
+            (lambda: self.line_5.text().strip().lower() == "постоянный ток".lower(), True)  # Text question
+        ]
+
         correct_answers = 0
         results = []
 
-        if self.radioButton_2.isChecked():
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
+        for question, expected in questions:
+            if question() == expected:
+                correct_answers += 1
+                results.append(True)
+            else:
+                results.append(False)
 
-        if self.radioButton_19.isChecked():
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.line_2.text() == "Поляризация":
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.radioButton_6.isChecked():
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.line_3.text() == "Электромагнитная индукция":
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.radioButton_10.isChecked():
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.line_4.text() == "Сверхпроводимость":
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.radioButton_13.isChecked():
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        if self.line_5.text() == "Постоянный ток":
-            correct_answers += 1
-            results.append(True)
-        else:
-            results.append(False)
-
-        print(f"{self.first_name} {self.last_name}: {correct_answers}/9")
         return results
 
 
